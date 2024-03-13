@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
@@ -49,10 +50,15 @@ fun LemonTreeUi(modifier: Modifier = Modifier, onImageClick:()-> Unit){
         mutableStateOf(1)
     }
 
+    var random by remember {
+        mutableStateOf((2..4).random())
+    }
 
-    var cnt:Int = 0;
     val imageResources = when(result){
-
+        2 -> R.drawable.lemon_squeeze
+        3 -> R.drawable.lemon_drink
+        4 -> R.drawable.lemon_restart
+        else -> R.drawable.lemon_tree
     }
 
     Column(
@@ -60,7 +66,7 @@ fun LemonTreeUi(modifier: Modifier = Modifier, onImageClick:()-> Unit){
         horizontalAlignment = Alignment.CenterHorizontally
     ){
 
-        Image( onClick = onImageClick,
+        Image( modifier.clickable { onClick = onImageClick }
             painter = painterResource(imageResources),
             contentDescription = "1"
         )
