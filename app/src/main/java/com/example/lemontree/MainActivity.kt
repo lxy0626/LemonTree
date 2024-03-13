@@ -66,9 +66,38 @@ fun LemonTreeUi(modifier: Modifier = Modifier, onImageClick:()-> Unit){
         horizontalAlignment = Alignment.CenterHorizontally
     ){
 
-        Image( modifier.clickable { onClick = onImageClick }
+        Image(
             painter = painterResource(imageResources),
-            contentDescription = "1"
+            contentDescription = "1",
+            Modifier.clickable {
+                onImageClick();
+//                result++
+
+                when(result){
+                    2 -> {
+                        random--
+                        if(random == 0){
+                            result++
+                        }
+                    }
+                    5 -> result = 0
+                    else -> result++
+                }
+
+//                if (result==2){
+//                    random--
+//                    if (random == 0)
+//                        result++
+//                    else
+//                        result = 2
+//                }
+//                else
+//                    result++
+//
+//
+//                if (result == 5)
+//                    result = 0
+            }
         )
 
     }
